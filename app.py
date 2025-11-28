@@ -4,7 +4,7 @@ import re
 
 # --- 1. 網頁設定 ---
 st.set_page_config(
-    page_title="NCU 選課小幫手(未正式上線)施工中...",
+    page_title="NCU 選課小幫手(施工中)",
     page_icon="🎓",
     layout="wide"
 )
@@ -70,7 +70,7 @@ def parse_time_string(time_str):
 
 # --- 4. 主程式介面 ---
 def main():
-    st.title("🎓 NCU 中央大學選課篩選器")
+    st.title("🎓 NCU 中央大學選課篩選器(未正式上線)施工中...")
     st.markdown("輸入你的空堂時間與系級，快速找出能上的課！")
 
     # 讀取資料
