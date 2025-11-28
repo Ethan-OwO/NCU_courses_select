@@ -4,7 +4,7 @@ import re
 
 # --- 1. 網頁設定 ---
 st.set_page_config(
-    page_title="NCU 選課小幫手",
+    page_title="NCU 選課小幫手(未正式上線)施工中...",
     page_icon="🎓",
     layout="wide"
 )
