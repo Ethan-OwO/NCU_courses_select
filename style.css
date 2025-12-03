@@ -1,0 +1,389 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+    background: #1a1a1a;
+    color: #e0e0e0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* 側邊欄樣式 */
+.sidebar {
+    width: 280px;
+    background: #2d2d2d;
+    border-right: 1px solid #3d3d3d;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+.sidebar-content {
+    padding: 20px;
+}
+
+.section-title {
+    color: #ffffff;
+    font-size: 1.1em;
+    margin: 20px 0 15px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #4a4a4a;
+}
+
+.section-title:first-child {
+    margin-top: 0;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    color: #b0b0b0;
+    font-size: 0.9em;
+    margin-bottom: 6px;
+}
+
+.input-field,
+.select-field {
+    width: 100%;
+    padding: 10px;
+    background: #1a1a1a;
+    border: 1px solid #4a4a4a;
+    border-radius: 6px;
+    color: #e0e0e0;
+    font-size: 0.95em;
+    transition: all 0.3s;
+}
+
+.input-field:focus,
+.select-field:focus {
+    outline: none;
+    border-color: #5a9fd4;
+    box-shadow: 0 0 0 3px rgba(90, 159, 212, 0.1);
+}
+
+.input-field::placeholder {
+    color: #666;
+}
+
+.hint-text {
+    color: #888;
+    font-size: 0.85em;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+/* 週次展開按鈕 */
+.weekday-sections {
+    margin-top: 12px;
+}
+
+.weekday-section {
+    margin-bottom: 8px;
+}
+
+.weekday-toggle {
+    width: 100%;
+    padding: 12px;
+    background: #1a1a1a;
+    border: 1px solid #4a4a4a;
+    border-radius: 6px;
+    color: #e0e0e0;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.weekday-toggle:hover {
+    background: #252525;
+    border-color: #5a9fd4;
+}
+
+.weekday-toggle .arrow {
+    transition: transform 0.3s;
+    font-size: 0.8em;
+}
+
+.weekday-toggle.active .arrow {
+    transform: rotate(90deg);
+}
+
+.period-checkboxes {
+    padding: 12px;
+    background: #1a1a1a;
+    border: 1px solid #3d3d3d;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    margin-top: -6px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    padding: 6px 0;
+}
+
+.checkbox-item input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    cursor: pointer;
+    accent-color: #5a9fd4;
+}
+
+.checkbox-item label {
+    cursor: pointer;
+    color: #b0b0b0;
+    font-size: 0.9em;
+    user-select: none;
+}
+
+.checkbox-item:hover label {
+    color: #e0e0e0;
+}
+
+/* 開始篩選按鈕 */
+.search-button {
+    width: 100%;
+    padding: 14px;
+    background: #e74c3c;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
+.search-button:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(231, 76, 60, 0.4);
+}
+
+.search-button:active {
+    transform: translateY(0);
+}
+
+/* 主內容區 */
+.main-content {
+    flex: 1;
+    overflow-y: auto;
+    background: #1a1a1a;
+}
+
+.page-header {
+    padding: 30px 40px 20px 40px;
+    border-bottom: 1px solid #3d3d3d;
+}
+
+.page-title {
+    color: #ffffff;
+    font-size: 1.8em;
+    margin-bottom: 8px;
+}
+
+.page-subtitle {
+    color: #888;
+    font-size: 1em;
+}
+
+.info-banner {
+    margin: 20px 40px;
+    padding: 15px 20px;
+    background: #1e3a5f;
+    border-left: 4px solid #5a9fd4;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.info-icon {
+    font-size: 1.5em;
+}
+
+/* 結果區域 */
+.results-container {
+    padding: 20px 40px 40px 40px;
+}
+
+.results-title {
+    color: #ffffff;
+    font-size: 1.4em;
+    margin-bottom: 20px;
+}
+
+.table-container {
+    background: #2d2d2d;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #3d3d3d;
+}
+
+/* 表格樣式 */
+.course-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.course-table thead {
+    background: #252525;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.course-table th {
+    padding: 15px 12px;
+    text-align: left;
+    color: #b0b0b0;
+    font-weight: 600;
+    font-size: 0.9em;
+    border-bottom: 2px solid #3d3d3d;
+}
+
+.course-table tbody tr {
+    border-bottom: 1px solid #3d3d3d;
+    transition: background 0.2s;
+}
+
+.course-table tbody tr:hover {
+    background: #333;
+}
+
+.course-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.course-table td {
+    padding: 14px 12px;
+    color: #e0e0e0;
+    font-size: 0.9em;
+    vertical-align: top;
+}
+
+.course-table td:first-child {
+    text-align: center;
+    color: #888;
+}
+
+.course-name {
+    color: #5a9fd4;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.course-code {
+    color: #888;
+    font-size: 0.85em;
+}
+
+.course-note {
+    color: #aaa;
+    font-size: 0.85em;
+    margin-top: 4px;
+}
+
+.loading-cell {
+    text-align: center;
+    padding: 40px !important;
+    color: #666;
+}
+
+.result-count {
+    margin-top: 20px;
+    padding: 12px 20px;
+    background: #2d2d2d;
+    border-radius: 6px;
+    color: #b0b0b0;
+    text-align: center;
+}
+
+.result-count span {
+    color: #5a9fd4;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+/* 捲軸樣式 */
+.sidebar::-webkit-scrollbar,
+.main-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track,
+.main-content::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+.sidebar::-webkit-scrollbar-thumb,
+.main-content::-webkit-scrollbar-thumb {
+    background: #4a4a4a;
+    border-radius: 4px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover,
+.main-content::-webkit-scrollbar-thumb:hover {
+    background: #5a5a5a;
+}
+
+/* 響應式設計 */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 250px;
+    }
+    
+    .page-header,
+    .results-container,
+    .info-banner {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        max-height: 50vh;
+        border-right: none;
+        border-bottom: 1px solid #3d3d3d;
+    }
+    
+    .main-content {
+        flex: 1;
+    }
+    
+    .page-title {
+        font-size: 1.3em;
+    }
+    
+    .course-table {
+        font-size: 0.85em;
+    }
+    
+    .course-table th,
+    .course-table td {
+        padding: 10px 8px;
+    }
+}

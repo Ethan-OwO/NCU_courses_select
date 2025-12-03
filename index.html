@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCU 中央大學選課篩選器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 左側邊欄 -->
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <h2 class="section-title">1. 個人設定</h2>
+                
+                <div class="form-group">
+                    <label>你的系所 (用於過濾限修)</label>
+                    <input type="text" id="userDepartment" placeholder="例如：資工系、通訊系" class="input-field">
+                </div>
+
+                <div class="form-group">
+                    <label>你的年級</label>
+                    <select id="userGrade" class="select-field">
+                        <option value="1">大一</option>
+                        <option value="2">大二</option>
+                        <option value="3">大三</option>
+                        <option value="4">大四</option>
+                    </select>
+                </div>
+
+                <h2 class="section-title">2. 設定「沒空」的時間</h2>
+                <p class="hint-text">請勾選你已經有課或不想排課的時段：</p>
+
+                <div class="weekday-sections">
+                    <div class="weekday-section">
+                        <button class="weekday-toggle" data-day="1">
+                            <span class="arrow">▶</span>
+                            <span>週一 (點擊展開)</span>
+                        </button>
+                        <div class="period-checkboxes" id="day-1" style="display: none;">
+                            <!-- 由 JS 生成 -->
+                        </div>
+                    </div>
+
+                    <div class="weekday-section">
+                        <button class="weekday-toggle" data-day="2">
+                            <span class="arrow">▶</span>
+                            <span>週二 (點擊展開)</span>
+                        </button>
+                        <div class="period-checkboxes" id="day-2" style="display: none;">
+                            <!-- 由 JS 生成 -->
+                        </div>
+                    </div>
+
+                    <div class="weekday-section">
+                        <button class="weekday-toggle" data-day="3">
+                            <span class="arrow">▶</span>
+                            <span>週三 (點擊展開)</span>
+                        </button>
+                        <div class="period-checkboxes" id="day-3" style="display: none;">
+                            <!-- 由 JS 生成 -->
+                        </div>
+                    </div>
+
+                    <div class="weekday-section">
+                        <button class="weekday-toggle" data-day="4">
+                            <span class="arrow">▶</span>
+                            <span>週四 (點擊展開)</span>
+                        </button>
+                        <div class="period-checkboxes" id="day-4" style="display: none;">
+                            <!-- 由 JS 生成 -->
+                        </div>
+                    </div>
+
+                    <div class="weekday-section">
+                        <button class="weekday-toggle" data-day="5">
+                            <span class="arrow">▶</span>
+                            <span>週五 (點擊展開)</span>
+                        </button>
+                        <div class="period-checkboxes" id="day-5" style="display: none;">
+                            <!-- 由 JS 生成 -->
+                        </div>
+                    </div>
+                </div>
+
+                <button id="searchBtn" class="search-button">開始篩選</button>
+            </div>
+        </aside>
+
+        <!-- 主內容區 -->
+        <main class="main-content">
+            <header class="page-header">
+                <h1 class="page-title">🎓 NCU 中央大學選課篩選器(未正式上線)施工中...</h1>
+                <p class="page-subtitle">輸入你的空堂時間與系級，快速找出能上的課！</p>
+            </header>
+
+            <div class="info-banner">
+                <span class="info-icon">👍</span>
+                <span>請先在側邊欄輸入條件，然後按下「開始篩選」！</span>
+            </div>
+
+            <div class="results-container">
+                <h2 class="results-title">目前課程資料庫預覽</h2>
+                
+                <div class="table-container">
+                    <table class="course-table" id="courseTable">
+                        <thead>
+                            <tr>
+                                <th width="40">流水號</th>
+                                <th width="200">名稱與備註</th>
+                                <th width="80">教授</th>
+                                <th width="50">學分</th>
+                                <th width="250">時間與教室</th>
+                                <th width="60">選修別</th>
+                                <th width="60">全學半</th>
+                            </tr>
+                        </thead>
+                        <tbody id="courseTableBody">
+                            <tr>
+                                <td colspan="7" class="loading-cell">請點擊「開始篩選」查看符合的課程</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="result-count" id="resultCount" style="display: none;">
+                    找到 <span id="courseCount">0</span> 門符合條件的課程
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
