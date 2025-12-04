@@ -9,22 +9,35 @@ import os
 app = Flask(__name__)
 
 # CORS 設定 - 支援本地開發和生產環境
+frontend_url = os.getenv('FRONTEND_URL', '')
 allowed_origins = [
     "http://localhost:5500",
     "http://127.0.0.1:5500",
     "http://localhost:3000",
-    os.getenv('FRONTEND_URL', '')  # 從環境變數讀取前端 URL
 ]
-# 移除空字串
-allowed_origins = [origin for origin in allowed_origins if origin]
 
-CORS(app, resources={
+# 如果有設定 FRONTEND_URL，加入允許列表
+if frontend_url:
+    allowed_origins.append(frontend_url)
+    # 同時允許 https 和 http 版本
+    if frontend_url.startswith('https://'):
+        allowed_origins.append(frontend_url.replace('https://', 'http://'))
+    print(f"Frontend URL configured: {frontend_url}")
+else:
+    print("Warning: FRONTEND_URL not set, allowing all origins")
+
+# 如果沒有生產環境 URL，允許所有來源（僅開發環境）
+cors_config = {
     r"/api/*": {
-        "origins": allowed_origins if allowed_origins else "*",
+        "origins": allowed_origins if frontend_url else "*",
         "methods": ["GET", "POST", "OPTIONS"],
-        "allow_headers": ["Content-Type"]
+        "allow_headers": ["Content-Type"],
+        "supports_credentials": False
     }
-})
+}
+
+CORS(app, resources=cors_config)
+print(f"CORS allowed origins: {allowed_origins if frontend_url else '*'}")
 
 def load_courses():
     courses = []
