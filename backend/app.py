@@ -4,9 +4,27 @@ import csv
 import re
 import openpyxl
 from io import BytesIO
+import os
 
 app = Flask(__name__)
-CORS(app)
+
+# CORS 設定 - 支援本地開發和生產環境
+allowed_origins = [
+    "http://localhost:5500",
+    "http://127.0.0.1:5500",
+    "http://localhost:3000",
+    os.getenv('FRONTEND_URL', '')  # 從環境變數讀取前端 URL
+]
+# 移除空字串
+allowed_origins = [origin for origin in allowed_origins if origin]
+
+CORS(app, resources={
+    r"/api/*": {
+        "origins": allowed_origins if allowed_origins else "*",
+        "methods": ["GET", "POST", "OPTIONS"],
+        "allow_headers": ["Content-Type"]
+    }
+})
 
 def load_courses():
     courses = []
@@ -215,15 +233,20 @@ def download_courses():
         }), 500
 
 if __name__ == '__main__':
+    # 使用環境變數的 PORT，如果沒有則使用 3000
+    port = int(os.getenv('PORT', 3000))
+    debug_mode = os.getenv('FLASK_ENV', 'development') == 'development'
+
     print("=" * 50)
     print("NCU Course Filter Backend Server")
     print("=" * 50)
     print(f"Loaded {len(ALL_COURSES)} courses")
-    print("Server running at: http://localhost:3000")
+    print(f"Server running on port: {port}")
     print("API endpoints:")
     print("  - POST /api/filter-courses")
+    print("  - POST /api/download-courses")
     print("  - GET  /api/courses")
     print("  - GET  /api/health")
     print("=" * 50)
 
-    app.run(host='0.0.0.0', port=3000, debug=True)
+    app.run(host='0.0.0.0', port=port, debug=debug_mode)
