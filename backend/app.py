@@ -64,7 +64,11 @@ def load_courses():
     return courses
 
 ALL_COURSES = load_courses()
-print(f"Loaded {len(ALL_COURSES)} courses")
+print("=" * 50)
+print("NCU Course Filter Backend Server")
+print("=" * 50)
+print(f"✓ Loaded {len(ALL_COURSES)} courses")
+print("=" * 50)
 
 def parse_course_time(time_string):
     weekday_map = {'一': '1', '二': '2', '三': '3', '四': '4', '五': '5'}
