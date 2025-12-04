@@ -121,8 +121,9 @@ body {
     transform: rotate(90deg);
 }
 
-.period-checkboxes {
-    padding: 12px;
+.period-dropdown {
+    max-height: 300px;
+    overflow-y: auto;
     background: #1a1a1a;
     border: 1px solid #3d3d3d;
     border-top: none;
@@ -130,29 +131,60 @@ body {
     margin-top: -6px;
 }
 
-.checkbox-item {
-    display: flex;
-    align-items: center;
-    padding: 6px 0;
-}
-
-.checkbox-item input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-    margin-right: 8px;
-    cursor: pointer;
-    accent-color: #5a9fd4;
-}
-
-.checkbox-item label {
-    cursor: pointer;
+.period-item {
+    padding: 10px 12px;
     color: #b0b0b0;
     font-size: 0.9em;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-bottom: 1px solid #2d2d2d;
     user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.checkbox-item:hover label {
+.period-item:last-child {
+    border-bottom: none;
+}
+
+.period-item:hover {
+    background: #252525;
     color: #e0e0e0;
+}
+
+.period-item.selected {
+    background: #3d2f2f;
+    color: #ff6b6b;
+    font-weight: 600;
+}
+
+.period-item.selected::after {
+    content: '✓';
+    color: #ff6b6b;
+    font-weight: bold;
+}
+
+.period-time {
+    color: #888;
+    font-size: 0.85em;
+}
+
+.period-dropdown::-webkit-scrollbar {
+    width: 6px;
+}
+
+.period-dropdown::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+.period-dropdown::-webkit-scrollbar-thumb {
+    background: #4a4a4a;
+    border-radius: 3px;
+}
+
+.period-dropdown::-webkit-scrollbar-thumb:hover {
+    background: #5a5a5a;
 }
 
 /* 開始篩選按鈕 */
@@ -235,6 +267,31 @@ body {
     border-radius: 8px;
     overflow: hidden;
     border: 1px solid #3d3d3d;
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+}
+
+.table-container > table {
+    flex-shrink: 0;
+}
+
+.table-body-wrapper {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.table-body-spacer {
+    width: 100%;
+}
+
+.table-body-wrapper table {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
 /* 表格樣式 */
