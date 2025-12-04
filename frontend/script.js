@@ -138,7 +138,7 @@ async function searchCourses() {
 
     try {
         // 發送 POST 請求到後端
-        const response = await fetch('http://localhost:3000/api/filter-courses', {
+        const response = await fetch(`${API_BASE_URL}/api/filter-courses`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -234,7 +234,7 @@ async function downloadSelectedCourses() {
     downloadBtn.disabled = true;
 
     try {
-        const response = await fetch('http://localhost:3000/api/download-courses', {
+        const response = await fetch(`${API_BASE_URL}/api/download-courses`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
