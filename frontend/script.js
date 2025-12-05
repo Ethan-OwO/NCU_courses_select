@@ -9,7 +9,13 @@ const periods = [
     { period: '6', time: '14:00-14:50' },
     { period: '7', time: '15:00-15:50' },
     { period: '8', time: '16:00-16:50' },
-    { period: '9', time: '17:00-17:50' }
+    { period: '9', time: '17:00-17:50' },
+    { period: 'A', time: '18:00-18:50' },
+    { period: 'B', time: '19:00-19:50' },
+    { period: 'C', time: '20:00-20:50' },
+    { period: 'D', time: '21:00-21:50' },
+    { period: 'E', time: '22:00-22:50' },
+    { period: 'F', time: '23:00-23:50' }
 ];
 
 const weekdays = ['一', '二', '三', '四', '五'];
@@ -370,7 +376,7 @@ function formatTimeDisplay(timeString) {
     // 將 "一234" 轉換為 "週一 2,3,4"
     const parts = timeString.split(',');
     return parts.map(part => {
-        const match = part.match(/([一二三四五])([0-9NABCD]+)/);
+        const match = part.match(/([一二三四五])([0-9NABCDEF]+)/);
         if (match) {
             const day = match[1];
             const periods = match[2].split('').join(',');

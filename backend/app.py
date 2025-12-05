@@ -54,7 +54,7 @@ def parse_course_time(time_string):
 
     for part in parts:
         part = part.strip()
-        match = re.match(r'([一二三四五])([0-9NABCD]+)', part)
+        match = re.match(r'([一二三四五])([0-9NABCDEF]+)', part)
         if match:
             day_chinese = match.group(1)
             periods = match.group(2)
