@@ -2,8 +2,8 @@
 const API_CONFIG = {
     // 本地開發環境
     development: 'http://localhost:3000',
-    // 生產環境 - 部署後改成你的 Render URL
-    production: 'https://ncu-courses-select.vercel.app'
+    // 生產環境 - Render 後端 URL
+    production: 'https://ncu-courses-select.onrender.com'
 };
 
 // 自動偵測環境
